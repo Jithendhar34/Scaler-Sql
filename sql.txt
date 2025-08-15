@@ -1,0 +1,508 @@
+DROP DATABASE IF EXISTS `jedi_academy`;
+
+CREATE DATABASE `jedi_academy`;
+
+USE `jedi_academy`;
+
+SET
+    NAMES utf8;
+
+SET
+    character_set_client = utf8mb4;
+
+-- CREATE TABLES --
+CREATE TABLE `students` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(255) NOT NULL,
+    `last_name` varchar(255) NOT NULL,
+    `email` varchar(255) NOT NULL,
+    `phone` varchar(255),
+    `birth_date` date,
+    `address` varchar(255),
+    `iq` int,
+    `batch_id` int,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `batches` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `start_date` date NOT NULL,
+    `description` varchar(255),
+    `instructor_id` int,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `instructors` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(255) NOT NULL,
+    `last_name` varchar(255) NOT NULL,
+    `email` varchar(255) NOT NULL,
+    `phone` varchar(255),
+    PRIMARY KEY (`id`)
+);
+
+-- ADD FOREIGN KEYS -- 
+ALTER TABLE
+    `students`
+ADD
+    FOREIGN KEY (`batch_id`) REFERENCES `batches`(`id`);
+
+ALTER TABLE
+    `batches`
+ADD
+    FOREIGN KEY (`instructor_id`) REFERENCES `instructors`(`id`);
+
+-- INSERT DATA --
+-- Instructors --
+INSERT INTO
+    `instructors` (`first_name`, `last_name`, `email`, `phone`)
+VALUES
+    ('Master', 'Yoda', 'y@jedi.com', '123-456-7890'),
+    (
+        'Obi-Wan',
+        'Kenobi',
+        'o@jedi.com',
+        '123-456-7890'
+    ),
+    (
+        'Sherlock',
+        'Holmes',
+        's@sherlock.ed',
+        '123-456-7890'
+    ),
+    (
+        'Rani',
+        'Laxmi Bai',
+        'r@rebelli.on',
+        '123-456-7890'
+    ),
+    (
+        'Thor',
+        'Odinson',
+        't@thunder.com',
+        '123-456-7890'
+    );
+
+-- Batches --
+INSERT INTO
+    `batches` (
+        `name`,
+        `start_date`,
+        `instructor_id`
+    )
+VALUES
+    (
+        'Jedi Academy 1',
+        '2012-01-01',
+        1
+    ),
+    (
+        'Jedi Academy 2',
+        '2014-01-01',
+        2
+    ),
+    (
+        'Sherlock Academy',
+        '2017-01-01',
+        3
+    ),
+    (
+        'Independence Academy',
+        '1857-01-01',
+        4
+    ),
+    (
+        'Love and Thunder Academy',
+        '2022-01-01',
+        5
+    );
+
+-- Students --
+INSERT INTO
+    `students` (
+        `first_name`,
+        `last_name`,
+        `email`,
+        `phone`,
+        `birth_date`,
+        `address`,
+        `iq`,
+        `batch_id`
+    )
+VALUES
+    (
+        'Anakin',
+        'Skywalker',
+        'darth@empire.blr',
+        '123-456-7890',
+        '1973-01-01',
+        'Tatooine',
+        130,
+        1
+    ),
+    (
+        'Luke',
+        'Skywalker',
+        'luke@resistance.com',
+        '123-456-7890',
+        '1994-01-01',
+        'Tatooine',
+        120,
+        2
+    ),
+    (
+        'Leia',
+        'Organa',
+        'leia@resistance.com',
+        '123-456-7890',
+        '1994-01-01',
+        'Alderaan',
+        130,
+        2
+    ),
+    (
+        'John',
+        'Watson',
+        'j@sherlock.ed',
+        '123-456-7890',
+        '1657-01-01',
+        'London',
+        130,
+        3
+    ),
+    (
+        'Mycroft',
+        'Holmes',
+        'm@sherlock.ed',
+        '123-456-7890',
+        '1657-01-01',
+        'London',
+        150,
+        3
+    ),
+    (
+        'Tantia',
+        'Tope',
+        't@rebelli.on',
+        '123-456-7890',
+        '1657-01-01',
+        'Jhansi',
+        130,
+        4
+    ),
+    (
+        'Jane',
+        'Foster',
+        'jane@th.or',
+        '123-456-7890',
+        '2022-01-01',
+        'New Asgard',
+        160,
+        5
+    ),
+    (
+        'Korg',
+        'Rock',
+        'korg@th.or',
+        '123-456-7890',
+        '2022-01-01',
+        'New Asgard',
+        80,
+        5
+    );
+
+INSERT INTO 
+students (first_name, last_name, email, iq)
+VALUES ("Moriarty", "Patel", "mo@sherlock.ed", 170);
+
+INSERT INTO 
+batches (name, start_date)
+VALUES ("Crime Academy", "2022-10-01");
+
+INSERT INTO instructors VALUES (7, 'A' , 'B' , 'email.com', 'phone');
+
+INSERT INTO instructors VALUES (8, 'B','E','email','phone2');
+
+INSERT INTO `instructors` ( first_name , last_name , email) VALUES ( 'A','B','EMAIL');
+
+Select * from instructors;
+
+INSERT INTO instructors VALUES( 10,'K JITHENDHAR', 'REDDY' , ' EMAIL', 83929);
+
+INSERT INTO instructors VALUES (12,'ROCK', 'JOHN', 'rockjohn@gmail.com', 1234567);
+SELECT * FROM instructors WHERE id>11;
+
+SELECT * FROM instructors;
+
+SELECT * FROM students;
+
+SELECT first_name AS 'FIRST' , last_name AS 'Last' FROM students;
+
+SELECT address FROM students ;
+
+INSERT INTO students (first_name, last_name , email) VALUES ('A', 'B','@gmail.com');
+
+SELECT *  FROM instructors;
+SELECT * FROM batches;  
+SELECT name  AS 'full name', start_date  FROM batches;
+
+SELECT email , phone FROM instructors;
+
+SELECT name  AS 'FULL_NAME' , start_date AS 'START' FROM batches;
+SELECT first_name ,last_name AS 'FULL NAME ' FROM students;
+
+SELECT DISTINCT  address FROM students;
+
+SELECT DISTINCT id FROM students;
+
+SELECT DISTINCT batch_id FROM students;
+
+SELECT DISTINCT instructor_id FROM batches;
+
+SELECT * FROM students; 
+
+SELECT first_name , iq/100 FROM students ;
+
+SELECT DISTINCT id  FROM students;
+
+SELECT * FROM students WHERE id=1;  
+
+SELECT first_name , last_name , email FROM students WHERE address='jhansi';
+
+
+SELECT iq FROM students WHERE iq>150; 
+
+
+SELECT first_name , last_name , iq, address FROM students WHERE iq > 150 AND address='Meerut';
+
+SELECT * FROM students WHERE address='Meerut';
+
+SELECT * FROM students WHERE first_name ='John' OR first_name='Mycroft' OR first_name='Anakin' ; 
+
+SELECT * FROM students WHERE first_name IN ('John','Mycroft','Anakin');
+SELECT * FROM students WHERE address IN ('Jhansi' , 'Meerut', 'London');
+SELECT * FROM students WHERE first_name ='Tantia';
+SELECT * FROM students WHERE first_name ='John' OR first_name='Mycroft';
+SELECT * FROM students WHERE address NOT IN ('Jhansi','London');
+SELECT * FROM students WHERE address IN('Meerut','London');
+SELECT DISTINCT address FROM students; 
+SELECT * FROM students;
+SELECT DISTINCT address FROM students WHERE batch_id > 2;
+SELECT * FROM batches WHERE instructor_id =1;
+SELECT * FROM students WHERE first_name NOT IN ('John');
+SELECT first_name , last_name FROM instructors WHERE last_name IN('Holmes', 'Odinson','Yoda');
+SELECT CONCAT(first_name, ' ' + last_name ) AS Full_name  FROM instructors WHERE last_name IN('Holmes','Odinson');
+SELECT * FROM batches WHERE start_date > '2022-01-01'; 
+SELECT * FROM batches WHERE start_date >= '2017-01-01' AND  start_date <= '2022-01-01';  
+SELECT * FROM batches WHERE start_date BETWEEN '2017-01-01' AND   '2022-01-01';   
+SELECT * FROM students WHERE iq BETWEEN '100' AND '150';
+SELECT * FROM students WHERE iq > 100 AND iq<150;
+SELECT * FROM batches WHERE name LIKE '%academy';
+SELECT * FROM batches WHERE name LIKE 'jedi%';
+SELECT * FROM batches WHERE name LIKE 'Crime%';
+SELECT * FROM batches WHERE name LIKE '%and%'; 
+SELECT * FROM students;
+SELECT * FROM students WHERE first_name LIKE 'T%';  
+
+SELECT * FROM instructors; 
+SELECT * FROM instructors WHERE first_name LIKE '_';
+SELECT * FROM students WHERE id < 6;
+INSERT INTO students ( first_name , last_name , email,phone,birth_date,address,iq)VALUES ('hi','world','jithendhar','80082111','1972-01-01','hyd','20');
+SELECT * FROM students WHERE batch_id IS NULL;
+SELECT * FROM students WHERE last_name LIKE '%walker';
+SELECT  DISTINCT id , CONCAT (first_name ,last_name)   AS full_name  FROM students;
+SELECT * FROM instructors WHERE email LIKE '_@jedi.com';
+SELECT * FROM instructors WHERE email LIKE '_@%.%';
+SELECT * FROM instructors WHERE phone IS NULL;
+SELECT * FROM instructors WHERE phone IS NOT NULL;
+SELECT * FROM instructors where phone is null;
+SELECT * FROM instructors WHERE email IS NOT NULL AND phone IS NULL ; 
+SELECT first_name, last_name , iq FROM students  ORDER BY iq DESC; 
+SELECT first_name , last_name , email FROM students ORDER BY iq ASC;
+SELECT * FROM instructors ;
+SELECT first_name , birth_date FROM students  WHERE birth_date IS NOT NULL ORDER  BY birth_date ASC;
+SELECT id,first_name,iq,birth_date FROM students ORDER BY iq ASC, birth_date ASC ; 
+SELECT DISTINCT address , first_name FROM students ORDER BY address; 
+SELECT iq,first_name , last_name  FROM students ORDER BY iq ASC LIMIT 5;
+SELECT id,first_name , last_name FROM students ORDER BY address ASC LIMIT 5;
+SELECT first_name, birth_date FROM students ORDER BY birth_date ASC LIMIT 5;
+-- update and delete 
+SELECT * FROM students;
+UPDATE students 
+SET birth_date ='2022-01-01'
+WHERE id=1;
+UPDATE students 
+SET phone ='80082175666',
+first_name='jithendhar',
+address='hyd'
+WHERE id=2;
+SELECT * FROM students;
+DELETE FROM students WHERE id =3;
+SELECT * FROM students; 
+SELECT * FROM instructors ;
+SET SQL_SAFE_UPDATES = 1;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM instructors WHERE first_name LIKE 'T%';
+
+
+
+DELETE FROM instructors WHERE first_name LIKE 'T%' AND id IS NOT NULL;
+
+SELECT * FROM students;
+SELECT * FROM batches ;
+SELECT * FROM instructors ;
+SELECT * FROM students s JOIN batches b ON s.batch_id = b.id WHERE b.`name`= 'Jedi Academy 1';
+SELECT * FROM batches b JOIN instructors i ON b.instructor_id = i.id WHERE i.first_name='Thor';  
+SELECT * FROM students s JOIN batches b ON s.batch_id = b.id WHERE b.`name` LIKE 'Jedi%'; 
+SELECT * FROM students s JOIN batches b ON s.id = b.id ORDER BY s.id ; 
+
+SELECT * FROM students s JOIN batches b ON s.batch_id = b.id WHERE b.start_date ='2012-01-01';
+SELECT * FROM batches b JOIN instructors i ON b.instructor_id = i.id WHERE i.email  LIKE '%@jedi.com';
+ 
+SELECT * FROM instructors i INNER JOIN batches b ON b.instructor_id = i.id ;    
+
+SELECT * FROM students s JOIN batches b ON s.batch_id = b.id; 
+SELECT * FROM students s CROSS JOIN batches b ;
+SELECT * FROM students ;
+SELECT COUNT(id) FROM students;
+SELECT COUNT(*) FROM students ;
+SELECT SUM(id) FROM students;
+SELECT COUNT(*) FROM batches;
+SELECT COUNT(DISTINCT  batch_id)  FROM students;
+SELECT COUNT(*) FROM batches;
+SELECT COUNT(batch_id) FROM students;
+SELECT AVG(iq) FROM students;
+SELECT COUNT(id) FROM batches;
+SELECT COUNT(*) ,AVG(iq) FROM students; 
+SELECT MIN(iq),MAX(iq) FROM students;
+SELECT SUM(iq) FROM students;
+SELECT MIN(start_date) FROM batches; 
+SELECT * FROM batches;
+SELECT * FROM batches WHERE name  LIKE 'Jedi%';
+SELECT COUNT(*) FROM students WHERE iq>150;
+SELECT SUM(iq) / COUNT(iq) FROM students;
+SELECT COUNT(DISTINCT(batch_id)) FROM students;
+SELECT * FROM students;
+SELECT DISTINCT  last_name FROM students;
+SELECT batch_id, COUNT(*) FROM students GROUP BY batch_id ;
+SELECT batch_id,AVG(iq) FROM students  WHERE batch_id IS NOT NULL GROUP BY batch_id ; 
+SELECT batch_id , AVG(iq) FROM students WHERE batch_id IN (1,2) GROUP BY batch_id;
+SELECT instructor_id, COUNT(*)  FROM batches WHERE instructor_id IS NOT NULL  GROUP BY instructor_id;
+SELECT batch_id , AVG(iq) AS avg_iq FROM students WHERE batch_id IS NOT NULL GROUP BY batch_id HAVING avg_iq>130;
+SELECT AVG(iq) FROM students;
+SELECT * FROM students WHERE iq>(SELECT AVG(iq) FROM students);
+SELECT iq FROM students WHERE id=5;
+SELECT * FROM students WHERE iq>(SELECT iq FROM students WHERE id=5);
+SELECT * FROM batches WHERE name LIKE 'Jedi%';
+SELECT * FROM students WHERE batch_id IN (SELECT * FROM batches WHERE name LIKE 'Jedi%');	
+SELECT * FROM batches   WHERE instructor_id IN 
+(SELECT id  FROM instructors WHERE email LIKE '%@Jedi%');
+SELECT * FROM students WHERE iq > ANY
+(SELECT iq FROM students WHERE batch_id = 2); 
+SELECT * FROM students s1 WHERE iq < (SELECT AVG(iq) FROM students s2 WHERE s1.batch_id = s2.batch_id );
+SELECT * FROM students WHERE iq >
+(SELECT MAX(iq)  FROM students WHERE batch_id ='2');
+
+SELECT * FROM students WHERE iq>130; 
+SELECT * FROM students WHERE iq>(
+SELECT iq FROM students WHERE id='5');
+
+SELECT * FROM students WHERE batch_id IN(
+SELECT id FROM batches WHERE name LIKE '%Jedi%');
+
+SELECT * FROM batches WHERE instructor_id IN(
+SELECT * FROM instructors WHERE email LIKE '%Jedi%');
+
+CREATE VIEW vw_students_batchess AS 
+SELECT  s.id AS student_id ,
+ s.first_name,
+ s.last_name,
+ b.id AS batch_id,
+ b.name
+ FROM students s 
+ JOIN batches b ON s.batch_id = b.id
+ ORDER BY iq DESC;
+ 
+ CREATE VIEW vw_students_batchesss AS 
+SELECT  
+  s.id AS student_id,
+  s.first_name,
+  s.last_name,
+  b.id AS batch_id,
+  b.name AS batch_name
+FROM students s 
+JOIN batches b ON s.batch_id = b.id;
+
+SELECT * FROM vw_students_batchesss;
+
+
+CREATE VIEW hello AS 
+SELECT s.id  AS hello_id,
+s.first_name ,
+s.last_name, 
+b.id 
+FROM students s 
+JOIN batches b ON s.batch_id =b.id ;
+
+SELECT * FROM hello;
+
+SELECT * FROM hello WHERE id ='3';
+SELECT batch_id , COUNT(*) FROM vw_students_batchesss GROUP BY batch_id ;
+
+CREATE VIEW vw_students_lean AS 
+SELECT id , birth_date ,address, iq ,batch_id FROM students  ;
+
+SELECT * FROM vw_students_lean;
+
+
+CREATE VIEW vw_students_batch AS 
+SELECT  s.id AS student_id, s.first_name, s.last_name , b.id AS batch_id , b.name  FROM students s JOIN batches b ON s.batch_id = b.id ORDER BY iq DESC;
+
+SELECT * FROM vw_students_batch;
+ 
+CREATE VIEW vw_students AS 
+SELECT s.id AS studentt_id, s.first_name,s.last_name ,b.id AS batch_name ,b.name FROM students s JOIN batches b ON s.batch_id =b.id ORDER BY iq ASC;
+
+
+SELECT CONCAT( first_name,last_name ) AS full_name  FROM vw_students;
+
+SELECT * FROM vw_students;
+SELECT * FROM students;
+SELECT * FROM vw_students WHERE first_name ='Jane';
+SELECT * FROM students UNION SELECT * FROM students;
+SELECT * FROM students WHERE batch_id =1 UNION SELECT * FROM students  WHERE batch_id =2 ;
+SELECT id,iq   FROM students UNION SELECT id,name FROM batches;
+
+
+CREATE MATERIALIZED VIEW mvw_students AS 
+SELECT 
+  s.id AS studentt_id, 
+  s.first_name,
+  s.last_name,
+  b.id AS batch_name,
+  b.name 
+FROM students s 
+JOIN batches b ON s.batch_id = b.id 
+ORDER BY iq ASC;
+
+SELECT * FROM batches; 
+SELECT * FROM students WHERE id=10;
+SELECT * FROM students WHERE first_name ='Jithendhar';
+SELECT * FROM batches WHERE name ='Jedi Academy 1';
+SELECT * FROM batches WHERE name = 'Jedi Academy 2';
+EXPLAIN SELECT * FROM students WHERE email='aakjfdl';
+EXPLAIN SELECT * FROM students WHERE first_name ='A' ;
+
+
+SELECT * FROM students;
+
+SELECT * FROM batches;
+SELECT * FROM instructors;
+EXPLAIN SELECT * FROM students WHERE id='1';
+CREATE INDEX idx_students_email ON students(email);
+CREATE INDEX idx_students_first_last_name ON students (first_name,last_name); 
+CREATE INDEX idx_students_phone ON students (phone);
+
+
+
