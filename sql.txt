@@ -23,6 +23,7 @@ CREATE TABLE `students` (
     `batch_id` int,
     PRIMARY KEY (`id`)
 );
+//comment 
 
 CREATE TABLE `batches` (
     `id` int NOT NULL AUTO_INCREMENT,
